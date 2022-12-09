@@ -1,603 +1,380 @@
-<!DOCTYPE html>
+<!DOCTYPE HEML PUBLIC>
 
-<html lang="en">
+<html>
 
- 
+    <head>
 
-<head>
+    <meta charset="utf-8">
 
-    <meta charset="UTF-8">
+    <title>
 
- 
+        From ZXW-NUDT
 
-    <title>圣诞树</title>
+    </title>
 
- 
+        <style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+            body{text-align:center}
 
- 
+            html, body
 
-    <style>
+            {
 
-        * {
+                width: 100%;
 
-            box-sizing: border-box;
+                height: 100%;
 
-        }
+                margin: 0;
 
- 
+                padding: 0;
 
- 
+                border: 0;
 
-        body {
+            }
 
-            margin: 0;
+            
 
-            height: 100vh;
+            div
 
-            overflow: hidden;
+            {
 
-            display: flex;
+                margin: 0;
 
-            align-items: center;
+                padding: 0;
 
-            justify-content: center;
+                border: 0;
 
-            background: #161616;
+            }
 
-            color: #c5a880;
+            .nav
 
-            font-family: sans-serif;
+            {
 
-        }
+                position: absolute;
 
- 
+                top: 0;
 
- 
+                left: 0;
 
-        label {
+                width: 100%;
 
-            display: inline-block;
+                height: 27px;
 
-            background-color: #161616;
+                background-color: white;
 
-            padding: 16px;
+                color: black;
 
-            border-radius: 0.3rem;
+                text-align: center;
 
-            cursor: pointer;
+                line-height: 25px;
 
-            margin-top: 1rem;
+            }
 
-            width: 300px;
+            a
 
-            border-radius: 10px;
+            {
 
-            border: 1px solid #c5a880;
+                color: black;
 
-            text-align: center;
+                text-decoration: none;
 
-        }
+                border-bottom: 1px dashed black;
 
- 
+            }
 
- 
+            a:hover
 
-        ul {
+            {
 
-            list-style-type: none;
+                border-bottom: 1px solid red;
 
-            padding: 0;
+            }
 
-            margin: 0;
+            .previous
 
-        }
+            {
 
- 
+                float: left;
 
- 
+                margin-left: 10px;
 
-        .btn {
+            }
 
-            background-color: #161616;
+            .next
 
-            border-radius: 10px;
+            {
 
-            color: #c5a880;
+                float: right;
 
-            border: 1px solid #c5a880;
+                margin-right: 10px;
 
-            padding: 16px;
+            }
 
-            width: 300px;
+            .green
 
-            margin-bottom: 16px;
+            {
 
-            line-height: 1.5;
+                color: green;
 
-            cursor: pointer;
+            }
 
-        }
+            .red
 
- 
+            {
 
-        .separator {
+                color: red;
 
-            font-weight: bold;
+            }
 
-            text-align: center;
+            textarea
 
-            width: 300px;
+            {
 
-            margin: 16px 0px;
+                width: 100%;
 
-            color: #a07676;
+                height: 100%;
 
-        }
+                border: 0;                
 
- 
+                padding: 0;                
 
- 
+                margin: 0;                
 
-        .title {
+                padding-bottom: 20px;              
 
-            color: #a07676;
+            }
 
-            font-weight: bold;
+            .block-outer            
 
-            font-size: 1.25rem;
+            {                
 
-            margin-bottom: 16px;
+                float: left;                
 
-        }
+                width: 22%;                
 
- 
+                height: 100%;                
 
- 
+                padding: 5px;                
 
-        .text-loading {
+                border-left: 1px solid black;                
 
-            font-size: 2rem;
+                margin: 30px 3px 3px 3px;                
 
-        }
+            }
 
-    </style>
+            .block-inner            
 
- 
+            {                
+
+                height: 68%;                
+
+            }
+
+            .one
+
+            {                
+
+                border: 0;                
+
+            }
+
+        </style>
+
+    </head>
+
+<body marginwidth="0" marginheight="0">
+
+    <canvas id="c" height="356" width="446">
 
     <script>
 
-        window.console = window.console || function (t) { };
+        var collapsed = true;
+
+        function toggle()
+
+        {
+
+            var fs = top.document.getElementsByTagName('frameset')[0];
+
+            var f = fs.getElementsByTagName('frame');
+
+            if (collapsed)
+
+            {
+
+                fs.rows = '250px,*';
+
+                fs.noResize = false;
+
+                f[0].noResize = false;
+
+                f[1].noResize = false;
+
+            }
+
+            else
+
+            {
+
+                fs.rows = '30px,*';
+
+                fs.noResize = true;
+
+                f[0].noResize = true;
+
+                f[1].noResize = true;
+
+            }
+
+            collapsed = !collapsed;
+
+        }
 
     </script>
-
- 
-
- 
-
- 
 
     <script>
 
-        if (document.location.search.match(/type=embed/gi)) {
+        var b = document.body;
 
-            window.parent.postMessage("resize", "*");
+        var c = document.getElementsByTagName('canvas')[0];
 
-        }
+        var a = c.getContext('2d');
+
+        document.body.clientWidth;
 
     </script>
 
- 
+    <script>
 
- 
+        M=Math;
 
-</head>
+        Q=M.random;J=[];
 
- 
+        U=16;
 
-<body translate="no">
+        T=M.sin;
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/build/three.min.js"></script>
+        E=M.sqrt;
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/EffectComposer.js"></script>
+        for(O=k=0;x=z=j=i=k<200;)
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/RenderPass.js"></script>
+        with(M[k]=k?c.cloneNode(0):c)
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/ShaderPass.js"></script>
+        {    
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/CopyShader.js"></script>
+            width=height=k?32:W=446;
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+            with(getContext('2d'))
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+            if(k>10|!k)
 
- 
+            for(
 
-    <div id="overlay">
+            font='60px Impact',
 
-        <ul>
+            V='rgba(';I=i*U,fillStyle=k?k==13?V+'205,205,215,.15)':
 
-            <li class="title">请选择音乐</li>
+            V+(147+I)+','+(k%2?128+I:0)+','+I+',.5)':'#cca',i<7;)
 
-            <li>
+            beginPath(fill(arc(U-i/3,24-i/2,k==13?4-(i++)/2:8-i++,0,M.PI*2,1)));
 
-                <button class="btn" id="btnA" type="button">
+            else for(;
 
-                    Snowflakes Falling Down by Simon Panrucker
+            x=T(i),        
 
-                </button>
+            y=Q()*2-1,        
 
-            </li>
+            D=x*x+y*y,        
 
-            <li><button class="btn" id="btnB" type="button">This Christmas by Dott</button></li>
+            B=E(D-x/.9-1.5*y+1),        
 
-            <li><button class="btn" id="btnC" type="button">No room at the inn by TRG Banks</button></li>
+            R=67*(B+1)*(L=k/9+.8)>>1,        
 
-            <li><button class="btn" id="btnD" type="button">Jingle Bell Swing by Mark Smeby</button></li>
+            i++<W;        
 
-            <li class="separator">或者</li>
+            )
 
-            <li>
+            if(D<1)    
 
-                <input type="file" id="upload" hidden />
+            beginPath(strokeStyle=V+R+','+(R+B*L>>0)+',40,.1)'),        
 
-                <label for="upload">Upload File</label>
+            moveTo(U+x*8,U+y*8),        
 
-            </li>
+            lineTo(U+x*U,U+y*U),        
 
-        </ul>
+            stroke();
 
-    </div>
+            for(        
 
- 
+            y=H=k+E(k++)*25,        
 
-    <script id="rendered-js">
+            R=Q()*W;        
 
-        const { PI, sin, cos } = Math;
+            P=3,j<H;)    
 
-        const TAU = 2 * PI;
+            J[O++]=[
 
- 
+                x+=T(R)*P+Q()*6-3,y+=Q()*U-8,
 
-        const map = (value, sMin, sMax, dMin, dMax) => {
+                z+=T(R-11)*P+Q()*6-3,
 
-            return dMin + (value - sMin) / (sMax - sMin) * (dMax - dMin);
-
-        };
-
- 
-
-        const range = (n, m = 0) =>
-
-            Array(n).
-
-                fill(m).
-
-                map((i, j) => i + j);
-
- 
-
-        const rand = (max, min = 0) => min + Math.random() * (max - min);
-
-        const randInt = (max, min = 0) => Math.floor(min + Math.random() * (max - min));
-
-        const randChoise = arr => arr[randInt(arr.length)];
-
-        const polar = (ang, r = 1) => [r * cos(ang), r * sin(ang)];
-
- 
-
-        let scene, camera, renderer, analyser;
-
-        let step = 0;
-
-        const uniforms = {
-
-            time: { type: "f", value: 0.0 },
-
-            step: { type: "f", value: 0.0 }
-
-        };
-
- 
-
-        const params = {
-
-            exposure: 1,
-
-            bloomStrength: 0.9,
-
-            bloomThreshold: 0,
-
-            bloomRadius: 0.5
-
-        };
-
- 
-
-        let composer;
-
- 
-
-        const fftSize = 2048;
-
-        const totalPoints = 4000;
-
- 
-
-        const listener = new THREE.AudioListener();
-
- 
-
-        const audio = new THREE.Audio(listener);
-
- 
-
-        document.querySelector("input").addEventListener("change", uploadAudio, false);
-
- 
-
-        const buttons = document.querySelectorAll(".btn");
-
-        buttons.forEach((button, index) =>
-
-            button.addEventListener("click", () => loadAudio(index)));
-
- 
-
- 
-
-        function init() {
-
-            const overlay = document.getElementById("overlay");
-
-            overlay.remove();
-
- 
-
-            scene = new THREE.Scene();
-
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-
-            renderer.setPixelRatio(window.devicePixelRatio);
-
-            renderer.setSize(window.innerWidth, window.innerHeight);
-
-            document.body.appendChild(renderer.domElement);
-
- 
-
-            camera = new THREE.PerspectiveCamera(
-
-                60,
-
-                window.innerWidth / window.innerHeight,
-
-                1,
-
-                1000);
-
- 
-
-            camera.position.set(-0.09397456774197047, -2.5597086635726947, 24.420789670889008);
-
-            camera.rotation.set(0.10443543723052419, -0.003827152981119352, 0.0004011488708739715);
-
- 
-
-            const format = renderer.capabilities.isWebGL2 ?
-
-                THREE.RedFormat :
-
-                THREE.LuminanceFormat;
-
- 
-
-            uniforms.tAudioData = {
-
-                value: new THREE.DataTexture(analyser.data, fftSize / 2, 1, format)
-
-            };
-
- 
-
- 
-
-            addPlane(scene, uniforms, 3000);
-
-            addSnow(scene, uniforms);
-
- 
-
-            range(10).map(i => {
-
-                addTree(scene, uniforms, totalPoints, [20, 0, -20 * i]);
-
-                addTree(scene, uniforms, totalPoints, [-20, 0, -20 * i]);
-
-            });
-
- 
-
-            const renderScene = new THREE.RenderPass(scene, camera);
-
- 
-
-            const bloomPass = new THREE.UnrealBloomPass(
-
-                new THREE.Vector2(window.innerWidth, window.innerHeight),
-
-                1.5,
-
-                0.4,
-
-                0.85);
-
- 
-
-            bloomPass.threshold = params.bloomThreshold;
-
-            bloomPass.strength = params.bloomStrength;
-
-            bloomPass.radius = params.bloomRadius;
-
- 
-
-            composer = new THREE.EffectComposer(renderer);
-
-            composer.addPass(renderScene);
-
-            composer.addPass(bloomPass);
-
- 
-
-            addListners(camera, renderer, composer);
-
-            animate();
+                j/H*20+((j+=U)>H&Q()>.8?Q(P=9)*4:0)>>1]
 
         }
 
- 
+        setInterval(function G(m,l)
 
-        function animate(time) {
+        {    
 
-            analyser.getFrequencyData();
+            A=T(D-11);    
 
-            uniforms.tAudioData.value.needsUpdate = true;
+            if(l)
 
-            step = (step + 1) % 1000;
+            return(        
 
-            uniforms.time.value = time;
+            m[2]-l[2])*A+(l[0]-m[0])*T(D);        
 
-            uniforms.step.value = step;
+            a.clearRect(0,0,W,W);        
 
-            composer.render();
+            J.sort(G);
 
-            requestAnimationFrame(animate);
+            for(
 
-        }
+            i=0;
 
- 
+            L=J[i++];
 
-        function loadAudio(i) {
+            a.drawImage(M[L[3]+1],207+L[0]*A+L[2]*T(D)>>0,L[1]>>1))    
 
-            document.getElementById("overlay").innerHTML =
+            {
 
-                '<div class="text-loading">正在下载音乐，请稍等...</div>';
+                if(i==2e3)
 
-            const files = [
+                a.fillText
 
-                "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Simon_Panrucker/Happy_Christmas_You_Guys/Simon_Panrucker_-_01_-_Snowflakes_Falling_Down.mp3",
+                ('Happy Christmas!',U,345);
 
-                "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Dott/This_Christmas/Dott_-_01_-_This_Christmas.mp3",
+                if(!(i%7))        
 
-                "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/TRG_Banks/TRG_Banks_Christmas_Album/TRG_Banks_-_12_-_No_room_at_the_inn.mp3",
+                a.drawImage(M[13],
 
-                "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Mark_Smeby/En_attendant_Nol/Mark_Smeby_-_07_-_Jingle_Bell_Swing.mp3"];
+                ((157*(i*i)+T(D*5+i*i)*5)%W)>>0,
 
- 
+                ((113*i+(D*i)/60)%(290+i/99))>>0);
 
-            const file = files[i];
+            }    
 
- 
+            D+=.02
 
-            const loader = new THREE.AudioLoader();
+        },1)
+     
+      <h6>孙佳晔<h6>
 
-            loader.load(file, function (buffer) {
+    </script>
 
-                audio.setBuffer(buffer);
+</body>
 
-                audio.play();
-
-                analyser = new THREE.AudioAnalyser(audio, fftSize);
-
-                init();
-
-            });
+</html>
 
  
 
- 
-
- 
-
- 
-
-        }
-
- 
-
- 
-
-        function uploadAudio(event) {
-
-            document.getElementById("overlay").innerHTML =
-
-                '<div class="text-loading">请稍等...</div>';
-
-            const files = event.target.files;
-
-            const reader = new FileReader();
-
- 
-
-            reader.onload = function (file) {
-
-                var arrayBuffer = file.target.result;
-
- 
-
-                listener.context.decodeAudioData(arrayBuffer, function (audioBuffer) {
-
-                    audio.setBuffer(audioBuffer);
-
-                    audio.play();
-
-                    analyser = new THREE.AudioAnalyser(audio, fftSize);
-
-                    init();
-
-                });
-
-            };
-
- 
-
-            reader.readAsArrayBuffer(files[0]);
-
-        }
-
- 
-
-        function addTree(scene, uniforms, totalPoints, treePosition) {
-
-            const vertexShader = `
-
-      attribute float mIndex;
-
-      varying vec3 vColor;
-
-      varying float opacity;
-
-      uniform sampler2D tAudioData;
-
-      float norm(float value, float min, float max ){
-
-       return (value - min) / (max - min);
-
-      }
-
-      float lerp(float norm, float min, float max){
-
-       return (max - min) * norm + min;
-
-      }
-
-      float map(float value, float sourceMin, float sourceMax, float destMin, float destMax){
-
-       return lerp(norm(value, sourceMin, sourceMax), destMin, destMax);
-
-      }
-
-      void main
